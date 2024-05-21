@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Изучаем ООП</title>
+</head>
+<body>
+    <h1>oooooooooooooooooooooop</h1>
+</body>
+<script>
+    let dog = {
+        name: "Буся",
+        legs: 3,
+        isAwesome: true
+    }
+    dog.bark = function() {
+        alert(`wow! My name is ${this.name}! `)
+    } 
+    let speak = function() {
+        alert(`${(this.sound).toLowerCase()}! Меня зовут ${this.name}!`)
+    }
+    let pig = {
+        sound: "Хрю-Хрю",
+        name: "Чарли",
+        speak: speak
+    }
+</script>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Найди клад!</title>
+    <script src="jquery.js"></script>
+</head>
+<body>
+    <h1 id="heading">Найди клад!</h1>
+    <img id="map" width="400" height="400" src="http://nostarch.com/images/treasuremap.png" onclick="clickPosition(event)">
+    <p id="distance"></p>
+</body>
+<script>
+    function getRandomNumber(size) {
+        return Math.floor(Math.random()*size)
+    }
+    let width = 400
+    let height = 400
+    let clicks = 0
+    let target = {
+        x: getRandomNumber(width),
+        y: getRandomNumber(height)
+    }
+    
+    function clickPosition(event) {
+            clicks++
+            let distance = getDistance(event, target)
+            let distanceHint = getDistanceHint(distance)
+            $("#distance").text(distanceHint)
+        if (distance < 8) {
+            alert("Клад найден! Кладмен хороший человек! Сделано кликов: " + clicks)
+            location.reload()
+        }
+        if (clicks > 5) {
+            alert("Клад не найден! Конец игры!")
+            location.reload()
+        }
+    }
+    function getDistance(event, target) {
+        let diffX = event.offsetX - target.x
+        let diffY = event.offsetY - target.y
+        return Math.sqrt((diffX * diffX) + (diffY * diffY))
+    }
+    function getDistanceHint(distance) {
+        if (distance < 10) {
+            return "Обожжешься! " + clicks
+        }
+        else if (distance < 20) {
+            return "Очень горячо! " + clicks
+        }
+        else if (distance < 40) {
+            return "Горячо! " + clicks
+        }
+        else if (distance < 80) {
+            return "Тепло! " + clicks
+        }
+        else if (distance < 160) {
+            return "Холодно! " + clicks
+        }
+        else if (distance < 320) {
+            return "Очень холодно! " + clicks
+        }
+        else if (distance < 640) {
+            return "Очень-очень холодно! " + clicks
+        }
+        else {
+            return "Замерзнешь! " + clicks
+        }
+    }
+    
+</script>
+</html>

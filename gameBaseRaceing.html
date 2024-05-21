@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гонки</title>
+    <script src="jquery.js"></script>
+</head>
+<body>
+    
+</body>
+<script>
+    let Car = function(x, y) {
+        this.speed = 5
+        this.x = x
+        this.y = y
+        this.draw()
+    }
+
+    /*let drawCar = function(car) {
+        let carHtml = '<img src="http://nostarch.com/images/car.png">'
+        let carElement = $(carHtml)
+        carElement.css({
+            position: "absolute",
+            left: car.x,
+            top: car.y
+        })
+        $("body").append(carElement)
+    }*/
+
+    Car.prototype.draw = function() {
+        let carHtml = '<img src="http://nostarch.com/images/car.png">'
+        this.carElement = $(carHtml)
+        this.carElement.css({
+            position: "absolute",
+            left: this.x,
+            top: this.y
+        })
+        $("body").append(this.carElement)
+    }
+
+    Car.prototype.moveRight = function(speed) {
+        this.x += speed
+
+        this.carElement.css({
+            left: this.x,
+            top: this.y
+        })
+    }
+    Car.prototype.moveLeft = function(speed) {
+        this.x -= speed
+
+        this.carElement.css({
+            left: this.x,
+            top: this.y
+        })
+    }
+    Car.prototype.moveUp = function(speed) {
+        this.y -= speed
+
+        this.carElement.css({
+            left: this.x,
+            top: this.y
+        })
+    }
+    Car.prototype.moveDown = function(speed) {
+        this.y += speed
+
+        this.carElement.css({
+            left: this.x,
+            top: this.y
+        })
+    }
+
+    let tesla = new Car(20,20)
+    let nissan = new Car(20,200)
+    setInterval(() => tesla.moveRight(Math.floor(Math.random()*5)), 30)
+    setInterval(() => nissan.moveRight(Math.floor(Math.random()*5)), 30)
+</script>
+</html>
+
+(e) => { return action }
+(e) => action
+
+e => { return action }
+e => action

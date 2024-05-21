@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" onclick="HtmlClickHandler()">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MouseMove!</title>
+    <script src="jquery.js"></script>
+</head>
+<body>
+    <h1 id="heading">Hello, world!</h1>
+
+</body>
+<script>
+    /*$("html").mousemove(function(event) {
+        $("#heading").offset({
+            left: event.pageX,
+            top: event.pageY
+        })
+    })*/
+    function HtmlClickHandler(event) {
+        $("#heading").offset({
+            left: event.pageX,
+            top: event.pageY
+        })
+    }
+</script>
+</html>

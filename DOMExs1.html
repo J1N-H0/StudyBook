@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Пробуем!</title>
+    <script src="jquery.js"></script>
+</head>
+<body>
+    <h1 id="firstHeading" onclick="funcRewrite()">Заголовок!</h1>
+</body>
+<script type="module">
+    let friendsArray = ["Вова", "Ян", "Тимур"]
+    
+    for (let i = 0; i < friendsArray.length; i++) {
+        $("body").append(`<p id=${i}>${friendsArray[i]}</p>`)
+        $(`#${i}`).hide().fadeIn(3000)
+        await new Promise(r => setTimeout(r, 3000))
+    }
+    
+    function funcRewrite() {
+        document.getElementById("firstHeading").innerHTML = "Мои друзья!"
+        $("p").append(" лучший!").hide().fadeIn(3000)
+    }
+</script>
+</html>

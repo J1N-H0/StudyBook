@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Изучаем DOM</title>
+    <script src="jquery.js"></script>
+</head>
+<body>
+    <h1 id = "mainHeading" onclick="func1()" >Привет, мир!</h1>
+</body>
+
+<script>
+
+    
+    $("#mainHeading").fadeIn(3000)
+    
+    function func1() {
+        //document.getElementById("mainHeading").innerHTML = prompt("Введите новый текст.")
+        var newHeadingText = prompt("Введите новый заголовок:");
+        $("#mainHeading").text(newHeadingText);
+        $("body").append("<p>Заголовок был изменен</p")
+        for (let i = 0; i<3; i++) {
+            hobby = prompt("Назови" + (i+1) + "хобби.")
+            $("body").append("<p>"+hobby+"</p>")
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мигающий заголовок</title>
+    <script src="jquery.js"></script>
+</head>
+<body>
+    <h1>Мигающий заголовок</h1>
+</body>
+<script>
+   /* for (let i = 0; i<5; i++) {
+       $("h1").fadeOut(1000)
+       $("h1").fadeIn(1000)
+    }*/
+   /* for (let i = 0; i<5; i++) {
+        $("h1").fadeOut(1000*(i+1))
+        $("h1").fadeIn(1000*(i+1))
+    }*/
+   /* for (let i = 0; i<2; i++) {
+        $("h1").fadeOut(1000*(i+1)).delay(5000)
+        $("h1").fadeIn(1000*(i+1))
+    }*/
+    $("h1").fadeTo(2000, 0.5)
+    $("h1").fadeTo(2000, 1)
+    
+</script>
+</html>

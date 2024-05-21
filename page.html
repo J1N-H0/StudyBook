@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя страничка</title>
+</head>
+<body>
+    <h1> Вставка JS кода в html</h1>
+    <script>  
+    var alphabet = "абвгдеёжзийклмнопрстуфхцчщшьъэюя ";
+    var lengthWord = 6;
+    var randomString = "";
+    for (var i = 0; i<lengthWord; i++){
+        randomString = randomString + alphabet[(Math.floor(Math.random()*alphabet.length))];
+    } 
+    console.info(randomString);
+    </script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление мячом</title>
+    <script src="jquery.js"></script>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="400"></canvas>
+</body>
+<script>
+    const canvas = document.getElementById("canvas")
+    const ctx = canvas.getContext("2d")
+    const width = canvas.width
+    const height = canvas.height
+    
+    let circle = function(x, y, radius, fillCircle) {
+        ctx.beginPath()
+        ctx.arc(x, y, radius, 0, Math.PI * 2, false)
+        if (fillCircle) {
+            ctx.fill()
+        } else {
+            ctx.stroke()
+        }
+    }
+
+    class Ball {
+        constructor() {
+            this.x = width/2
+            this.y = height/2
+            this.xSpeed = 5
+            this.ySpeed = 0
+        }
+
+        move(speed=5) {
+            if (this.xSpeed > 0) {
+                this.xSpeed = speed
+            } else if (this.xSpeed < 0) {
+                this.xSpeed = -speed
+            } else if (this.ySpeed > 0) {
+                this.ySpeed = speed
+            } else if (this.ySpeed < 0) {
+                this.ySpeed = -speed
+            }
+            this.x += this.xSpeed
+            this.y += this.ySpeed
+
+            if (this.x < 0) {
+                this.xSpeed = -this.xSpeed
+            } else if (this.x > width) {
+                this.xSpeed = -this.xSpeed
+            }
+            if (this.y < 0) {
+                this.ySpeed = -this.ySpeed
+            } else if (this.y > height) {
+                this.ySpeed = -this.ySpeed
+            }
+        }
+
+        draw(size) {
+            circle(this.x, this.y, size, true)
+        }
+
+        setDirection(direction) {
+            if (direction == "up") {
+                this.xSpeed = 0
+                this.ySpeed = -speedSelect
+            } else if (direction == "down") {
+                this.xSpeed = 0
+                this.ySpeed = speedSelect
+            } else if (direction == "right") {
+                this.xSpeed = speedSelect
+                this.ySpeed = 0
+            } else if (direction == "left") {
+                this.xSpeed = -speedSelect
+                this.ySpeed = 0
+            } else if (direction == "stop") {
+                this.xSpeed = 0
+                this.ySpeed = 0
+            }
+        }
+    }
+    let ball = new Ball()
+    const keyActions = {
+        32: "stop",
+        37: "left",
+        38: "up",
+        39: "right",
+        40: "down"
+    }
+    const speeds = {
+        96: 0,
+        97: 1,
+        98: 2,
+        99: 3,
+        100: 4,
+        101: 5,
+        102: 6,
+        103: 7,
+        104: 8,
+        105: 9,
+        
+    }
+    const speedChanger = {
+        90: "speedMinus", 
+        88: "speedPlus"
+    }
+    const sizeChanger = {
+        67: "sizeMinus",
+        86: "sizePlus"
+    }
+    $("body").keydown((event)=>{
+        if (!keyActions.hasOwnProperty(event.keyCode)) return
+
+        const direction = keyActions[event.keyCode]
+        ball.setDirection(direction)
+    })
+    var speedSelect = 5
+    
+    $("body").keydown((event)=>{
+        if (!speeds.hasOwnProperty(event.keyCode)) return 
+
+        speedSelect = speeds[event.keyCode]
+    })
+    var changeSpeed = 0
+    $("body").keydown((event)=>{
+        if (!speedChanger.hasOwnProperty(event.keyCode)) return 
+
+        changeSpeed = speedChanger[event.keyCode]
+        if (changeSpeed == "speedMinus" && speedSelect>0 && speedSelect<10) {
+            speedSelect--
+        } else if (changeSpeed == "speedPlus" && speedSelect>=0 && speedSelect<9) {
+            speedSelect++
+        }
+    })
+    var curSize = 10
+    $("body").keydown((event)=>{
+        if (!sizeChanger.hasOwnProperty(event.keyCode)) return 
+
+        changeSize = sizeChanger[event.keyCode]
+        if (changeSize == "sizeMinus" && curSize>1 && curSize<20) {
+            curSize--
+        } else if (changeSize == "sizePlus" && curSize>0 && curSize<19) {
+            curSize++
+        }
+    })
+    
+    setInterval(()=>{
+        ctx.clearRect(0, 0, width, height)
+        ball.draw(curSize)
+        
+        ball.move(speedSelect)
+        ctx.strokeRect(0, 0, width, height)
+    }, 30)
+
+</script>
+</html>

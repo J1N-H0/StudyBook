@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивное программирование</title>
+    <script src="jquery.js"></script>
+</head>
+<body>
+    <h1 id="firstHeading" onclick="firstHeadingClick(event)">Заголовок</h1>
+    <h2 id="time"></h2>
+</body>
+<script>
+    /*function timeUp() {
+        alert("Time out!")
+    }
+    let timeoutId = setTimeout(timeUp, 3000)
+    function click1() {
+        clearTimeout(timeoutId)
+    }*/
+
+
+    /*let i = 1
+    function printMessage() {
+        
+        console.log("Вы смотрите эту страницу " + (i*5) + " секунд")
+        i++
+    }
+    setInterval(printMessage, 5000)*/
+
+
+    /*var leftOffset = 0
+    function moveHeading() {
+        $("#firstHeading").offset({top: leftOffset})   
+        leftOffset++
+        
+        if (leftOffset > 200) {
+            leftOffset = 0
+        }
+    }
+    setInterval(moveHeading, 15)*/
+
+
+    function firstHeadingClick(event) {
+        console.log("Клик! " + event.pageX + " " + event.pageY)
+    }
+    
+</script>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Двигающийся заголовок</title>
+    <script src="jquery.js"></script>
+</head>
+<body>
+    <h1 id="movingHeader" onclick="stopMove()">Двигающийся заголовок!</h1>
+</body>
+<script>
+    let offsetLeft = 0
+    let offsetTop = 0
+    var counter = 10;
+    var idInt = setInterval(moveHeader, (counter*2))
+    function moveHeader(){
+        $("#movingHeader").offset({
+            left: offsetLeft,
+            top: offsetTop        
+        })
+        if (offsetLeft == 0 && offsetTop >= 0 && offsetTop < 200) {
+            offsetTop++
+        }
+        if (offsetLeft >= 0 && offsetLeft <200 && offsetTop == 200) {
+            offsetLeft++
+        }
+        if (offsetLeft == 200 && offsetTop <= 200 && offsetTop > 0) {
+            offsetTop--
+        }
+        if (offsetLeft <= 200 && offsetLeft > 0 && offsetTop == 0) {
+            offsetLeft-- 
+        }
+    }   
+   
+    function stopMove(){
+        counter--
+        clearInterval(idInt)
+        idInt = setInterval(moveHeader, (counter*2))
+        if (counter < 0) {
+            clearInterval(idInt)
+            $("#movingHeader").text("Поздравляем! Вы победили!")
+        }
+    }
+    
+</script>
+</html>

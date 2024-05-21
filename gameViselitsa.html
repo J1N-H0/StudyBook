@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Виселица!</title>
+</head>
+<body>
+    <h1>Виселица</h1>
+    <script>
+        function pickWord() {
+            let words = [      //массив со словами для игры
+                'программа',
+                'макака',
+                'прекрасный',
+                'оладушек',
+                'абрикос',
+                "яблоко"
+            ]
+            let fword = words[Math.floor(Math.random()*words.length)]   //выбор рандомного слова из массива
+            return fword
+        }
+        function setFinalWordArray(word) {
+            let FinalWordArray = []    //массив итогового слова для отображения игроку
+            for (let i = 0; i < word.length; i++) {      //заполняем массив пустыми полями 
+                FinalWordArray.push("_")               
+            }
+            return FinalWordArray
+        }
+        function showGameProgress(FinalWordArray, remainingGuesses, remainingLetters) {
+            alert(FinalWordArray.join(" ") + "\nУ вас осталось попыток: " + remainingGuesses + "\nНеотгаданных букв: " + remainingLetters)      //сообщение с текущим словом и количеством попыток
+        }
+        function getGuess() {
+            let guess1 = prompt("Угадайте букву или нажмите отмена для выхода из игры.").toLowerCase()
+            return guess1
+        }
+        function showCongrats(FinalWordArray, word) {
+            alert(FinalWordArray.join(" "))
+            alert("Поздравляем! Вы победили! Было загадано слово " + word)
+        }
+        function gameBody(FinalWordArray, guess, word) {
+                    let isWordChanged = false
+                    for (let j = 0; j < word.length; j++) {      //цикл сканирует слово и найдя совпадения переносит совпавшие буквы в текущее слово
+                        if ((word[j] == guess) && (FinalWordArray[j] == "_")) {
+                        FinalWordArray[j] = guess
+                        isWordChanged = true
+                        remainingLetters--
+                        }
+                    }
+                    if (!isWordChanged) {
+                        remainingGuesses--        //если совпадений нет то отнимается попытка
+                        if (remainingGuesses < 1){
+                            alert("Вы проиграли!\nПопытки закончились!\nБыло загадано слово: " + word)
+                            return
+                        }     
+                    }
+                    return FinalWordArray
+        }
+        alert('Добро пожаловать в игру Виселица!\n')
+        let word = pickWord()
+        let FinalWordArray = setFinalWordArray(word)
+        let remainingGuesses = 11 //количество оставшихся попыток
+        let remainingLetters = word.length //количество оставшихся неугаданных букв
+        while (remainingLetters>0) {       //цикл с проверкой на законченность игры
+                showGameProgress(FinalWordArray, remainingGuesses, remainingLetters)
+                let guess = getGuess()
+                if (guess == null) {
+                    break     //если нажать отмена кнопка вернет значение null и игра закончится
+                } else if (guess.length !== 1) {
+                    alert("Пожалуйста, введите только одну букву!")       //если ввести неверное количество букв и нажать продолжить то выведется данное сообщение
+                } else {
+                    gameBody(FinalWordArray, guess, word)
+                }
+        }
+        showCongrats(FinalWordArray, word)
+    </script>
+</body>
+</html>

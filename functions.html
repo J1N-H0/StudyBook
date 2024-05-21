@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>document</h1>
+    <script>
+        /*let j = 1;
+        while (j==1){
+            var howMuchTimes = Math.floor(prompt("Введите сколько раз напечатать"));
+            if (howMuchTimes/howMuchTimes !== 1){
+                alert("Введите число");
+            } else {
+                j++;
+            }
+        }           
+        let whatPrint = prompt("Введите что напечатать");
+        let printMoreTimes = function(howMuchTimes, whatPrint){
+            for (let i = 0; i < howMuchTimes; i++){
+                console.log(i + " " + whatPrint);
+            }
+        }
+        printMoreTimes(howMuchTimes, whatPrint);*/
+        /*
+        let double = function(number){
+            
+            return number*2;
+        };
+        double(prompt("какое число хотите удвоить?"));*/
+        function add(num1, num2){
+            return num1+num2;
+        }
+        function multiply(num1, num2){
+            return num1*num2;
+        }
+        function areArraysSame(arr1,arr2){
+            if ((Array.isArray(arr1) !== true )&&(Array.isArray(arr2) !== true)){
+                return false;
+            }
+            if (arr1.length !== arr2.length){
+                return false;
+            } else {
+                for (let i = 0; i < arr1.length; i++){
+                    if (arr1[i] !== arr2[i]){
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        
+    </script>
+</body>
+</html>

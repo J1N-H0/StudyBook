@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+</head>
+<body> 
+    <canvas id="canvas" width="600" height="600"></canvas>
+</body>
+<script>
+     let canvas = document.getElementById("canvas")
+     let ctx = canvas.getContext("2d")
+     
+     for (let i = 0; i < 3; i++) {
+        if (i==0) {ctx.fillStyle = "White"}
+        else if (i==1) {ctx.fillStyle = "Blue"} 
+        else if (i==2) {ctx.fillStyle = "Red"} 
+        ctx.fillRect(1 ,i*50+1 ,200, 50)
+        
+     }
+     ctx.strokeRect(0,0,202,152)
+
+     ctx.fillStyle = "Black"
+     ctx.beginPath()
+     ctx.moveTo(250, 20)
+     ctx.lineTo(270, 20)
+     ctx.lineTo(270, 40)
+     ctx.lineTo(250, 40)
+     ctx.lineTo(250, 20)
+     ctx.moveTo(260, 40)
+     ctx.lineTo(260, 80)
+     ctx.lineTo(280, 110)
+     ctx.moveTo(260, 80)
+     ctx.lineTo(240, 110)
+     ctx.moveTo(260,50)
+     ctx.lineTo(240, 45) 
+     ctx.moveTo(260,50)
+     ctx.lineTo(280, 45)
+     ctx.moveTo(254, 24)
+     ctx.lineTo(266, 24)
+     ctx.lineTo(254, 36)
+     ctx.lineTo(266, 36)
+     ctx.fill()
+     ctx.beginPath()
+     ctx.arc(300,300,50, 0, Math.PI*2,false)
+     ctx.stroke()
+</script>
+</html>

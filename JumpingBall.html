@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прыгающий мяч</title>
+</head>
+<body>
+    <canvas id="canvas" width="500" height="300"></canvas>
+</body>
+<script>
+    
+    class Ball {
+        constructor(){
+            this.x = 100
+            this.y = 100
+            this.xSpeed = Math.floor((Math.random()*10)-5)
+            this.ySpeed = Math.floor((Math.random()*10)-5)
+            let colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"]
+            this.color = colors[Math.floor(Math.random()*colors.length)]
+        }
+        draw() {
+            circle(this.x, this.y, 3, true, this.color)
+        }
+        move() {
+            this.x += this.xSpeed
+            this.y += this.ySpeed
+        }
+        checkColision() {
+            if (this.x < 0 || this.x > width) {
+                this.xSpeed= -this.xSpeed
+            }
+            if (this.y < 0 || this.y > height) {
+                this.ySpeed = -this.ySpeed
+            }
+        }
+
+    }
+    
+    let circle = function(x, y, radius, fillCircle, color) {
+        ctx.beginPath()
+        ctx.fillStyle = color
+        ctx.arc(x, y, radius, 0, Math.PI * 2, false)
+        if (fillCircle) {
+            ctx.fill()
+        } else {
+            ctx.stroke()
+        }
+    }
+    
+    let canvas = document.getElementById("canvas")
+    let ctx = canvas.getContext("2d")
+    let balls = []
+    for (let i = 0; i < 10; i++) {
+        balls[i] = new Ball()
+    }
+    var width = canvas.width
+    var height = canvas.height
+    setInterval(()=>{
+        ctx.clearRect(0, 0, width, height)
+        for (let i = 0; i < 10; i++) {
+            balls[i].draw()
+            balls[i].move()
+            balls[i].checkColision() 
+        }
+        ctx.strokeRect(0, 0, width, height)
+    }, 30)
+
+</script>
+</html>
